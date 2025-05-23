@@ -1,11 +1,24 @@
 
 import { useState } from 'react';
 
+// Define the feedback data type to match what FeedbackCard expects
+export interface FeedbackItem {
+  id: string;
+  type: 'given' | 'received';  // This ensures type is strictly 'given' or 'received'
+  recipient?: string;
+  sender?: string;
+  feedbackType: string;
+  categories: string[];
+  message: string;
+  date: string;
+  anonymous?: boolean;
+}
+
 // Mock data for demonstration
-const mockFeedbackData = [
+const mockFeedbackData: FeedbackItem[] = [
   {
     id: '1',
-    type: 'received',
+    type: 'received',  // Now explicitly typed as a literal
     sender: 'Sarah Johnson',
     feedbackType: 'positive',
     categories: ['teamwork', 'communication'],
@@ -15,7 +28,7 @@ const mockFeedbackData = [
   },
   {
     id: '2',
-    type: 'given',
+    type: 'given',  // Now explicitly typed as a literal
     recipient: 'Mike Chen',
     feedbackType: 'constructive',
     categories: ['innovation', 'problem-solving'],
@@ -25,7 +38,7 @@ const mockFeedbackData = [
   },
   {
     id: '3',
-    type: 'received',
+    type: 'received',  // Now explicitly typed as a literal
     sender: 'Anonymous',
     feedbackType: 'appreciation',
     categories: ['mentorship', 'leadership'],
@@ -35,7 +48,7 @@ const mockFeedbackData = [
   },
   {
     id: '4',
-    type: 'given',
+    type: 'given',  // Now explicitly typed as a literal
     recipient: 'Lisa Rodriguez',
     feedbackType: 'positive',
     categories: ['creativity', 'innovation'],
@@ -45,7 +58,7 @@ const mockFeedbackData = [
   },
   {
     id: '5',
-    type: 'received',
+    type: 'received',  // Now explicitly typed as a literal
     sender: 'David Kim',
     feedbackType: 'suggestion',
     categories: ['communication'],
@@ -56,9 +69,9 @@ const mockFeedbackData = [
 ];
 
 export const useFeedbackData = () => {
-  const [feedbackData, setFeedbackData] = useState(mockFeedbackData);
+  const [feedbackData, setFeedbackData] = useState<FeedbackItem[]>(mockFeedbackData);
 
-  const addFeedback = (newFeedback: any) => {
+  const addFeedback = (newFeedback: FeedbackItem) => {
     setFeedbackData(prev => [newFeedback, ...prev]);
   };
 
