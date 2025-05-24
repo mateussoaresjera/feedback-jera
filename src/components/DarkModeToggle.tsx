@@ -27,22 +27,22 @@ export const DarkModeToggle = () => {
   };
 
   return (
-    <div className="flex items-center gap-3 bg-muted/50 rounded-lg px-3 py-2">
-      <div className="flex items-center gap-2">
-        <Sun className="h-4 w-4 text-amber-500" />
-        <span className="text-sm font-nunito text-muted-foreground">Claro</span>
+    <div className="flex items-center gap-2 sm:gap-3 bg-muted/50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-0">
+      <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+        <Sun className="h-3 w-3 sm:h-4 sm:w-4 text-amber-500 shrink-0" />
+        <span className="text-xs sm:text-sm font-nunito text-muted-foreground hidden xs:inline">Claro</span>
       </div>
       
       <Switch
         checked={isDark}
         onCheckedChange={toggleDarkMode}
-        className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30"
+        className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30 shrink-0 scale-75 sm:scale-100"
         aria-label="Alternar modo escuro"
       />
       
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-nunito text-muted-foreground">Escuro</span>
-        <Moon className="h-4 w-4 text-slate-400" />
+      <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+        <span className="text-xs sm:text-sm font-nunito text-muted-foreground hidden xs:inline">Escuro</span>
+        <Moon className="h-3 w-3 sm:h-4 sm:w-4 text-slate-400 shrink-0" />
       </div>
     </div>
   );

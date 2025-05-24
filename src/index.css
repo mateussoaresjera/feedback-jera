@@ -127,3 +127,13 @@
   .pb-grid { @apply pb-2 sm:pb-4 lg:pb-8; }
 }
 
+/* Custom responsive breakpoint for extra small devices */
+@screen xs {
+  .xs\:inline {
+    display: inline;
+  }
+  
+  .xs\:hidden {
+    display: none;
+  }
+}
