@@ -46,44 +46,37 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
+      <div className="container mx-auto px-grid py-grid">
         {/* Header with improved mobile spacing */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-8 gap-4">
-          <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-grid gap-4-grid">
+          <div className="flex items-center gap-4-grid">
             <div className="relative">
-              {/* Logo with dynamic text color */}
+              {/* Dynamic Logo */}
+              <img 
+                src="https://jera.com.br/images/logo-jera-dark.svg" 
+                alt="Jera Logo" 
+                className="h-6 sm:h-8 w-auto dark:hidden"
+              />
               <img 
                 src="https://jera.com.br/images/logo-jera-light.svg" 
                 alt="Jera Logo" 
-                className="h-6 sm:h-8 w-auto"
+                className="h-6 sm:h-8 w-auto hidden dark:block"
               />
-              {/* Dynamic colored text overlay for "Jera" */}
-              <span 
-                className="absolute left-0 top-0 h-6 sm:h-8 flex items-center text-[#111111] dark:text-[#F5F5F5] font-bold text-sm sm:text-base"
-                style={{ 
-                  fontFamily: 'Arial, sans-serif',
-                  paddingLeft: '0.1em',
-                  fontSize: '1.1em',
-                  lineHeight: '1'
-                }}
-              >
-                Jera
-              </span>
             </div>
             <div className="hidden sm:block w-px h-4 sm:h-6 bg-border"></div>
             <div className="hidden lg:block">
               <p className="text-muted-foreground font-nunito text-xs sm:text-sm">Construindo uma cultura de crescimento contínuo e melhoria</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-4-grid w-full sm:w-auto justify-end">
             <DarkModeToggle />
             <UserAvatar />
           </div>
         </div>
 
         {/* Stats Cards with improved mobile layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-4 sm:mb-8">
-          <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4-grid mb-grid">
+          <Card className="bg-card shadow-sm rounded-xl p-4-grid">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium font-montserrat">Feedback Dado</CardTitle>
               <MessageSquare className="h-4 w-4 text-shamrock" />
@@ -94,7 +87,7 @@ const Index = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4">
+          <Card className="bg-card shadow-sm rounded-xl p-4-grid">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium font-montserrat">Feedback Recebido</CardTitle>
               <Users className="h-4 w-4 text-blue-600" />
@@ -105,7 +98,7 @@ const Index = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4 sm:col-span-2 lg:col-span-1">
+          <Card className="bg-card shadow-sm rounded-xl p-4-grid sm:col-span-2 lg:col-span-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium font-montserrat">Esta Semana</CardTitle>
               <TrendingUp className="h-4 w-4 text-heliotrope" />
@@ -118,26 +111,26 @@ const Index = () => {
         </div>
 
         {/* Main Content with improved mobile layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8-grid">
           {/* Recent Feedback */}
           <div className="lg:col-span-2">
-            <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4">
-              <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 gap-3">
+            <Card className="bg-card shadow-sm rounded-xl p-4-grid">
+              <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4-grid gap-4-grid">
                 <div>
                   <CardTitle className="font-montserrat">Feedback Recente</CardTitle>
                   <CardDescription className="font-nunito mt-1">Suas interações de feedback mais recentes</CardDescription>
                 </div>
                 <Button 
                   onClick={() => openFeedbackForm()}
-                  className="bg-shamrock hover:bg-shamrock/90 rounded-lg font-nunito focus-visible:ring-shamrock px-3 sm:px-4 py-2 w-full sm:w-auto"
+                  className="bg-shamrock hover:bg-shamrock/90 rounded-lg font-nunito focus-visible:ring-shamrock px-4-grid py-2 w-full sm:w-auto"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Dar Feedback
                 </Button>
               </CardHeader>
-              <CardContent className="p-3 sm:p-4 pt-0">
+              <CardContent className="p-4-grid pt-0">
                 {recentFeedback.length > 0 ? (
-                  <div className="space-y-3 sm:space-y-4">
+                  <div className="spacing-4">
                     {recentFeedback.map((feedback) => (
                       <FeedbackCard 
                         key={feedback.id} 
@@ -147,8 +140,8 @@ const Index = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-8 sm:py-12 text-muted-foreground">
-                    <MessageSquare className="w-8 sm:w-12 h-8 sm:h-12 mx-auto mb-4 text-muted-foreground/50" />
+                  <div className="text-center py-12-grid text-muted-foreground">
+                    <MessageSquare className="w-8 sm:w-12 h-8 sm:h-12 mx-auto mb-4-grid text-muted-foreground/50" />
                     <p className="font-nunito text-sm sm:text-base">Nenhum feedback ainda. Comece a construir sua cultura de feedback!</p>
                   </div>
                 )}
@@ -157,50 +150,50 @@ const Index = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="space-y-4 sm:space-y-6">
-            <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4">
-              <CardHeader className="p-3 sm:p-4">
+          <div className="spacing-8">
+            <Card className="bg-card shadow-sm rounded-xl p-4-grid">
+              <CardHeader className="p-4-grid">
                 <CardTitle className="font-montserrat">Ações Rápidas</CardTitle>
                 <CardDescription className="font-nunito mt-1">Categorias comuns de feedback</CardDescription>
               </CardHeader>
-              <CardContent className="p-3 sm:p-4 pt-0">
-                <div className="space-y-2 sm:space-y-3">
+              <CardContent className="p-4-grid pt-0">
+                <div className="spacing-4">
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-3 sm:px-4 py-2"
+                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-4-grid py-2"
                     onClick={() => openFeedbackForm('teamwork')}
                   >
-                    <div className="flex items-center gap-2 sm:gap-3 w-full">
+                    <div className="flex items-center gap-4-grid w-full">
                       <Badge variant="secondary" className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-nunito shrink-0 text-xs">Trabalho em Equipe</Badge>
                       <span className="flex-1 text-left text-sm truncate">Dar feedback de equipe</span>
                     </div>
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-3 sm:px-4 py-2"
+                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-4-grid py-2"
                     onClick={() => openFeedbackForm('communication')}
                   >
-                    <div className="flex items-center gap-2 sm:gap-3 w-full">
+                    <div className="flex items-center gap-4-grid w-full">
                       <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 font-nunito shrink-0 text-xs">Comunicação</Badge>
                       <span className="flex-1 text-left text-sm truncate">Feedback de comunicação</span>
                     </div>
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-3 sm:px-4 py-2"
+                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-4-grid py-2"
                     onClick={() => openFeedbackForm('innovation')}
                   >
-                    <div className="flex items-center gap-2 sm:gap-3 w-full">
+                    <div className="flex items-center gap-4-grid w-full">
                       <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 font-nunito shrink-0 text-xs">Inovação</Badge>
                       <span className="flex-1 text-left text-sm truncate">Destacar inovação</span>
                     </div>
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-3 sm:px-4 py-2"
+                    className="w-full justify-start rounded-lg font-nunito focus-visible:ring-shamrock h-auto min-h-[3rem] px-4-grid py-2"
                     onClick={() => openFeedbackForm('leadership')}
                   >
-                    <div className="flex items-center gap-2 sm:gap-3 w-full">
+                    <div className="flex items-center gap-4-grid w-full">
                       <Badge variant="secondary" className="bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 font-nunito shrink-0 text-xs">Liderança</Badge>
                       <span className="flex-1 text-left text-sm truncate">Feedback de liderança</span>
                     </div>
@@ -215,19 +208,19 @@ const Index = () => {
                   <TabsTrigger value="history" className="font-nunito text-sm">Histórico</TabsTrigger>
                   <TabsTrigger value="analytics" className="font-nunito text-sm">Análises</TabsTrigger>
                 </TabsList>
-                <TabsContent value="history" className="mt-3 sm:mt-4">
+                <TabsContent value="history" className="mt-4-grid">
                   <FeedbackHistory 
                     feedbackData={feedbackData} 
                     onFeedbackClick={setSelectedFeedback}
                   />
                 </TabsContent>
-                <TabsContent value="analytics" className="mt-3 sm:mt-4">
-                  <Card className="bg-card shadow-sm rounded-xl p-3 sm:p-4">
-                    <CardHeader className="p-3 sm:p-4">
+                <TabsContent value="analytics" className="mt-4-grid">
+                  <Card className="bg-card shadow-sm rounded-xl p-4-grid">
+                    <CardHeader className="p-4-grid">
                       <CardTitle className="text-sm font-montserrat">Tendências de Feedback</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-3 sm:p-4 pt-0">
-                      <div className="text-center py-6 sm:py-8 text-muted-foreground text-sm font-nunito">
+                    <CardContent className="p-4-grid pt-0">
+                      <div className="text-center py-8-grid text-muted-foreground text-sm font-nunito">
                         Análises em breve...
                       </div>
                     </CardContent>

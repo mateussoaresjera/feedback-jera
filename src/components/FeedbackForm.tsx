@@ -17,21 +17,21 @@ interface FeedbackFormProps {
 }
 
 const categories = [
-  { id: 'teamwork', label: 'Teamwork', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' },
-  { id: 'communication', label: 'Communication', color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' },
-  { id: 'innovation', label: 'Innovation', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' },
-  { id: 'leadership', label: 'Leadership', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' },
-  { id: 'problem-solving', label: 'Problem Solving', color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' },
-  { id: 'mentorship', label: 'Mentorship', color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' },
-  { id: 'creativity', label: 'Creativity', color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300' },
-  { id: 'reliability', label: 'Reliability', color: 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300' }
+  { id: 'teamwork', label: 'Trabalho em Equipe', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' },
+  { id: 'communication', label: 'Comunicação', color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' },
+  { id: 'innovation', label: 'Inovação', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' },
+  { id: 'leadership', label: 'Liderança', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300' },
+  { id: 'problem-solving', label: 'Resolução de Problemas', color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' },
+  { id: 'mentorship', label: 'Mentoria', color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300' },
+  { id: 'creativity', label: 'Criatividade', color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300' },
+  { id: 'reliability', label: 'Confiabilidade', color: 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300' }
 ];
 
 const feedbackTypes = [
-  { id: 'positive', label: 'Positive Recognition', description: 'Highlight great work and achievements' },
-  { id: 'constructive', label: 'Constructive Feedback', description: 'Share growth opportunities' },
-  { id: 'appreciation', label: 'Appreciation', description: 'Express gratitude and thanks' },
-  { id: 'suggestion', label: 'Suggestion', description: 'Propose ideas for improvement' }
+  { id: 'positive', label: 'Reconhecimento Positivo', description: 'Destacar um excelente trabalho e conquistas' },
+  { id: 'constructive', label: 'Feedback Construtivo', description: 'Compartilhar oportunidades de crescimento' },
+  { id: 'appreciation', label: 'Apreciação', description: 'Expressar gratidão e agradecimentos' },
+  { id: 'suggestion', label: 'Sugestão', description: 'Propor ideias para melhoria' }
 ];
 
 export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: FeedbackFormProps) => {
@@ -66,8 +66,8 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
     
     if (!formData.recipient || !formData.type || !formData.message) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
+        title: "Informações Obrigatórias",
+        description: "Por favor, preencha todos os campos obrigatórios.",
         variant: "destructive"
       });
       return;
@@ -87,20 +87,20 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
     onSubmit(newFeedback);
     
     toast({
-      title: "Feedback Sent!",
-      description: `Your feedback has been sent to ${formData.recipient}.`
+      title: "Feedback Enviado!",
+      description: `Seu feedback foi enviado para ${formData.recipient}.`
     });
     
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4-grid z-50">
       <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card rounded-xl">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4-grid">
           <div>
-            <CardTitle className="font-montserrat">Give Feedback</CardTitle>
-            <CardDescription className="font-nunito">Share constructive feedback to help your colleague grow</CardDescription>
+            <CardTitle className="font-montserrat">Dar Feedback</CardTitle>
+            <CardDescription className="font-nunito">Compartilhe feedback construtivo para ajudar seu colega a crescer</CardDescription>
           </div>
           <Button 
             variant="ghost" 
@@ -112,14 +112,14 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
           </Button>
         </CardHeader>
         
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <CardContent className="p-4-grid">
+          <form onSubmit={handleSubmit} className="spacing-8">
             {/* Recipient */}
-            <div className="space-y-2">
-              <Label htmlFor="recipient" className="font-montserrat">Recipient *</Label>
+            <div className="spacing-4">
+              <Label htmlFor="recipient" className="font-montserrat">Destinatário *</Label>
               <Input
                 id="recipient"
-                placeholder="Enter colleague's name or email"
+                placeholder="Digite o nome ou email do colega"
                 value={formData.recipient}
                 onChange={(e) => setFormData(prev => ({ ...prev, recipient: e.target.value }))}
                 className="w-full rounded-lg focus-visible:ring-shamrock font-nunito"
@@ -127,11 +127,11 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
             </div>
 
             {/* Feedback Type */}
-            <div className="space-y-2">
-              <Label className="font-montserrat">Feedback Type *</Label>
+            <div className="spacing-4">
+              <Label className="font-montserrat">Tipo de Feedback *</Label>
               <Select value={formData.type} onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}>
                 <SelectTrigger className="rounded-lg focus-visible:ring-shamrock">
-                  <SelectValue placeholder="Select feedback type" />
+                  <SelectValue placeholder="Selecione o tipo de feedback" />
                 </SelectTrigger>
                 <SelectContent>
                   {feedbackTypes.map((type) => (
@@ -147,9 +147,9 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
             </div>
 
             {/* Categories */}
-            <div className="space-y-2">
-              <Label className="font-montserrat">Categories (Optional)</Label>
-              <div className="flex flex-wrap gap-2">
+            <div className="spacing-4">
+              <Label className="font-montserrat">Categorias (Opcional)</Label>
+              <div className="flex flex-wrap gap-4-grid">
                 {categories.map((category) => (
                   <Badge
                     key={category.id}
@@ -175,36 +175,36 @@ export const FeedbackForm = ({ onClose, onSubmit, preSelectedCategory }: Feedbac
             </div>
 
             {/* Message */}
-            <div className="space-y-2">
-              <Label htmlFor="message" className="font-montserrat">Feedback Message *</Label>
+            <div className="spacing-4">
+              <Label htmlFor="message" className="font-montserrat">Mensagem do Feedback *</Label>
               <Textarea
                 id="message"
-                placeholder="Share your specific, actionable feedback..."
+                placeholder="Compartilhe seu feedback específico e útil..."
                 value={formData.message}
                 onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                 className="min-h-32 resize-none rounded-lg focus-visible:ring-shamrock font-nunito"
               />
               <p className="text-sm text-muted-foreground font-nunito">
-                Be specific, actionable, and constructive. Focus on behaviors and impact.
+                Seja específico, prático e construtivo. Foque em comportamentos e impacto.
               </p>
             </div>
 
             {/* Submit Button */}
-            <div className="flex gap-3 pt-4">
+            <div className="flex gap-4-grid pt-4-grid">
               <Button 
                 type="button" 
                 variant="outline" 
                 onClick={onClose} 
                 className="flex-1 rounded-lg font-nunito focus-visible:ring-shamrock"
               >
-                Cancel
+                Cancelar
               </Button>
               <Button 
                 type="submit" 
                 className="flex-1 bg-shamrock hover:bg-shamrock/90 rounded-lg font-nunito focus-visible:ring-shamrock focus-visible:ring-offset-2"
               >
                 <Send className="w-4 h-4 mr-2" />
-                Send Feedback
+                Enviar Feedback
               </Button>
             </div>
           </form>

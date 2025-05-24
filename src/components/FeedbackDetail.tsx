@@ -55,10 +55,10 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
   const isGiven = feedback.type === 'given';
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-50">
-      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-          <div className="flex items-center gap-3">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4-grid z-50">
+      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card rounded-xl">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4-grid p-4-grid">
+          <div className="flex items-center gap-4-grid">
             {isGiven ? (
               <ArrowRight className="w-5 h-5 text-shamrock" />
             ) : (
@@ -83,9 +83,9 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
           </Button>
         </CardHeader>
         
-        <CardContent className="space-y-6">
+        <CardContent className="spacing-8 p-4-grid">
           {/* Participant Info */}
-          <div className="space-y-2">
+          <div className="spacing-4">
             <h3 className="font-montserrat font-medium text-sm text-muted-foreground">
               {isGiven ? 'Destinatário' : 'Remetente'}
             </h3>
@@ -95,21 +95,21 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
           </div>
 
           {/* Date */}
-          <div className="space-y-2">
+          <div className="spacing-4">
             <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Data</h3>
             <p className="font-nunito text-sm">{formatDate(feedback.date)}</p>
           </div>
 
           {/* Categories */}
           {feedback.categories.length > 0 && (
-            <div className="space-y-2">
+            <div className="spacing-4">
               <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Categorias</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-4-grid">
                 {feedback.categories.map((category) => (
                   <Badge 
                     key={category} 
                     variant="secondary"
-                    className={`text-xs ${categoryColors[category] || 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'}`}
+                    className={`text-xs rounded-md ${categoryColors[category] || 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'}`}
                   >
                     {categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
                   </Badge>
@@ -119,9 +119,9 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
           )}
 
           {/* Message */}
-          <div className="space-y-2">
+          <div className="spacing-4">
             <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Mensagem</h3>
-            <div className="bg-muted/50 rounded-lg p-4">
+            <div className="bg-muted/50 rounded-lg p-4-grid">
               <p className="font-nunito text-sm leading-relaxed whitespace-pre-wrap">
                 {feedback.message}
               </p>

@@ -43,11 +43,11 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
 
   return (
     <Card className="bg-card shadow-sm rounded-xl">
-      <CardHeader>
+      <CardHeader className="p-4-grid">
         <CardTitle className="text-lg font-montserrat">Histórico de Feedback</CardTitle>
         
         {/* Filters */}
-        <div className="space-y-3">
+        <div className="spacing-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
@@ -58,7 +58,7 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
             />
           </div>
           
-          <div className="flex gap-2">
+          <div className="flex gap-4-grid">
             <Select value={filter} onValueChange={setFilter}>
               <SelectTrigger className="h-9 text-sm rounded-lg focus-visible:ring-shamrock">
                 <SelectValue placeholder="Tipo" />
@@ -87,8 +87,8 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
         </div>
       </CardHeader>
       
-      <CardContent>
-        <div className="space-y-3 max-h-96 overflow-y-auto">
+      <CardContent className="p-4-grid">
+        <div className="spacing-4 max-h-96 overflow-y-auto">
           {filteredFeedback.length > 0 ? (
             filteredFeedback
               .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -100,7 +100,7 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
                 />
               ))
           ) : (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-8-grid text-muted-foreground">
               <p className="text-sm font-nunito">Nenhum feedback corresponde aos seus filtros.</p>
             </div>
           )}
