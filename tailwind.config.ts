@@ -18,7 +18,23 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'nunito': ['Nunito', 'sans-serif'],
+			},
 			colors: {
+				// Brand colors
+				shamrock: {
+					DEFAULT: '#0db551',
+					light: '#12ff72'
+				},
+				platinum: '#E7E7E7',
+				licorice: '#111111',
+				heliotrope: '#e451ff',
+				'dark-forest': '#032611',
+				'royal-purple': '#7c12cd',
+				
+				// Existing shadcn colors
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

@@ -1,18 +1,18 @@
 
 import { useState } from "react";
-import { Filter, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { FeedbackCard } from "./FeedbackCard";
+import { FeedbackItem } from "@/hooks/useFeedbackData";
 
 interface FeedbackHistoryProps {
-  feedbackData: any[];
+  feedbackData: FeedbackItem[];
+  onFeedbackClick?: (feedback: FeedbackItem) => void;
 }
 
-export const FeedbackHistory = ({ feedbackData }: FeedbackHistoryProps) => {
+export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHistoryProps) => {
   const [filter, setFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,25 +31,25 @@ export const FeedbackHistory = ({ feedbackData }: FeedbackHistoryProps) => {
   const allCategories = Array.from(new Set(feedbackData.flatMap(f => f.categories)));
 
   return (
-    <Card className="bg-white shadow-sm">
+    <Card className="bg-card shadow-sm rounded-xl">
       <CardHeader>
-        <CardTitle className="text-lg">Feedback History</CardTitle>
+        <CardTitle className="text-lg font-montserrat">Feedback History</CardTitle>
         
         {/* Filters */}
         <div className="space-y-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="Search feedback..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-9"
+              className="pl-10 h-9 rounded-lg focus-visible:ring-shamrock font-nunito"
             />
           </div>
           
           <div className="flex gap-2">
             <Select value={filter} onValueChange={setFilter}>
-              <SelectTrigger className="h-9 text-sm">
+              <SelectTrigger className="h-9 text-sm rounded-lg focus-visible:ring-shamrock">
                 <SelectValue placeholder="Type" />
               </SelectTrigger>
               <SelectContent>
@@ -60,7 +60,7 @@ export const FeedbackHistory = ({ feedbackData }: FeedbackHistoryProps) => {
             </Select>
             
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="h-9 text-sm">
+              <SelectTrigger className="h-9 text-sm rounded-lg focus-visible:ring-shamrock">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
@@ -82,11 +82,15 @@ export const FeedbackHistory = ({ feedbackData }: FeedbackHistoryProps) => {
             filteredFeedback
               .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
               .map((feedback) => (
-                <FeedbackCard key={feedback.id} feedback={feedback} />
+                <FeedbackCard 
+                  key={feedback.id} 
+                  feedback={feedback} 
+                  onClick={onFeedbackClick ? () => onFeedbackClick(feedback) : undefined}
+                />
               ))
           ) : (
-            <div className="text-center py-8 text-gray-500">
-              <p className="text-sm">No feedback matches your filters.</p>
+            <div className="text-center py-8 text-muted-foreground">
+              <p className="text-sm font-nunito">No feedback matches your filters.</p>
             </div>
           )}
         </div>
