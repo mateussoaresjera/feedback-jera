@@ -47,39 +47,39 @@
 
   .dark {
     --background: 76 100% 7%; /* #032611 - Dark Forest */
-    --foreground: 0 0% 90.6%; /* #E7E7E7 - Platinum */
+    --foreground: 0 0% 96.1%; /* #F5F5F5 */
 
     --card: 0 0% 6.7%; /* #111111 - Licorice */
-    --card-foreground: 0 0% 90.6%;
+    --card-foreground: 0 0% 96.1%;
 
     --popover: 0 0% 6.7%;
-    --popover-foreground: 0 0% 90.6%;
+    --popover-foreground: 0 0% 96.1%;
 
     --primary: 145 100% 54%; /* #12ff72 - Shamrock Light */
     --primary-foreground: 76 100% 7%;
 
     --secondary: 0 0% 6.7%;
-    --secondary-foreground: 0 0% 90.6%;
+    --secondary-foreground: 0 0% 96.1%;
 
     --muted: 0 0% 10%;
     --muted-foreground: 0 0% 60%;
 
     --accent: 283 100% 54%; /* #e451ff - Heliotrope */
-    --accent-foreground: 0 0% 90.6%;
+    --accent-foreground: 0 0% 96.1%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 90.6%;
+    --destructive-foreground: 0 0% 96.1%;
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 145 100% 54%;
     
     --sidebar-background: 76 100% 7%;
-    --sidebar-foreground: 0 0% 90.6%;
+    --sidebar-foreground: 0 0% 96.1%;
     --sidebar-primary: 283 100% 44%; /* #7c12cd - Royal Purple */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 90.6%;
+    --sidebar-accent-foreground: 0 0% 96.1%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 145 100% 54%;
   }
@@ -97,4 +97,29 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-montserrat;
   }
+
+  /* Dynamic logo text color based on theme */
+  .logo-text-dynamic {
+    color: #111111;
+  }
+
+  .dark .logo-text-dynamic {
+    color: #F5F5F5;
+  }
+
+  /* 4-point grid system utilities */
+  .spacing-4 { @apply space-y-4; }
+  .spacing-8 { @apply space-y-8; }
+  .spacing-12 { @apply space-y-12; }
+  .spacing-16 { @apply space-y-16; }
+  
+  .gap-4-grid { @apply gap-4; }
+  .gap-8-grid { @apply gap-8; }
+  .gap-12-grid { @apply gap-12; }
+  .gap-16-grid { @apply gap-16; }
+  
+  .p-4-grid { @apply p-4; }
+  .p-8-grid { @apply p-8; }
+  .p-12-grid { @apply p-12; }
+  .p-16-grid { @apply p-16; }
 }

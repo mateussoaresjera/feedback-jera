@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { Sun, Moon } from 'lucide-react';
 
 export const DarkModeToggle = () => {
@@ -27,18 +27,23 @@ export const DarkModeToggle = () => {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={toggleDarkMode}
-      className="w-9 h-9 p-0 focus-visible:ring-2 focus-visible:ring-shamrock focus-visible:ring-offset-2"
-    >
-      {isDark ? (
-        <Sun className="h-4 w-4 text-shamrock-light" />
-      ) : (
-        <Moon className="h-4 w-4 text-shamrock" />
-      )}
-      <span className="sr-only">Toggle dark mode</span>
-    </Button>
+    <div className="flex items-center gap-3 bg-muted/50 rounded-lg px-3 py-2">
+      <div className="flex items-center gap-2">
+        <Sun className="h-4 w-4 text-amber-500" />
+        <span className="text-sm font-nunito text-muted-foreground">Claro</span>
+      </div>
+      
+      <Switch
+        checked={isDark}
+        onCheckedChange={toggleDarkMode}
+        className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30"
+        aria-label="Alternar modo escuro"
+      />
+      
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-nunito text-muted-foreground">Escuro</span>
+        <Moon className="h-4 w-4 text-slate-400" />
+      </div>
+    </div>
   );
 };
