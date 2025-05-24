@@ -12,6 +12,17 @@ interface FeedbackHistoryProps {
   onFeedbackClick?: (feedback: FeedbackItem) => void;
 }
 
+const categoryLabels: Record<string, string> = {
+  teamwork: 'Trabalho em Equipe',
+  communication: 'Comunicação',
+  innovation: 'Inovação',
+  leadership: 'Liderança',
+  'problem-solving': 'Resolução de Problemas',
+  mentorship: 'Mentoria',
+  creativity: 'Criatividade',
+  reliability: 'Confiabilidade'
+};
+
 export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHistoryProps) => {
   const [filter, setFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
@@ -33,14 +44,14 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
   return (
     <Card className="bg-card shadow-sm rounded-xl">
       <CardHeader>
-        <CardTitle className="text-lg font-montserrat">Feedback History</CardTitle>
+        <CardTitle className="text-lg font-montserrat">Histórico de Feedback</CardTitle>
         
         {/* Filters */}
         <div className="space-y-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Search feedback..."
+              placeholder="Buscar feedback..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 h-9 rounded-lg focus-visible:ring-shamrock font-nunito"
@@ -50,24 +61,24 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
           <div className="flex gap-2">
             <Select value={filter} onValueChange={setFilter}>
               <SelectTrigger className="h-9 text-sm rounded-lg focus-visible:ring-shamrock">
-                <SelectValue placeholder="Type" />
+                <SelectValue placeholder="Tipo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="given">Given</SelectItem>
-                <SelectItem value="received">Received</SelectItem>
+                <SelectItem value="all">Todos os Tipos</SelectItem>
+                <SelectItem value="given">Dados</SelectItem>
+                <SelectItem value="received">Recebidos</SelectItem>
               </SelectContent>
             </Select>
             
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
               <SelectTrigger className="h-9 text-sm rounded-lg focus-visible:ring-shamrock">
-                <SelectValue placeholder="Category" />
+                <SelectValue placeholder="Categoria" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="all">Todas as Categorias</SelectItem>
                 {allCategories.map(category => (
                   <SelectItem key={category} value={category}>
-                    {category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
+                    {categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -90,7 +101,7 @@ export const FeedbackHistory = ({ feedbackData, onFeedbackClick }: FeedbackHisto
               ))
           ) : (
             <div className="text-center py-8 text-muted-foreground">
-              <p className="text-sm font-nunito">No feedback matches your filters.</p>
+              <p className="text-sm font-nunito">Nenhum feedback corresponde aos seus filtros.</p>
             </div>
           )}
         </div>

@@ -98,28 +98,32 @@
     @apply font-montserrat;
   }
 
-  /* Dynamic logo text color based on theme */
-  .logo-text-dynamic {
-    color: #111111;
-  }
-
-  .dark .logo-text-dynamic {
-    color: #F5F5F5;
-  }
-
-  /* 4-point grid system utilities */
-  .spacing-4 { @apply space-y-4; }
-  .spacing-8 { @apply space-y-8; }
-  .spacing-12 { @apply space-y-12; }
-  .spacing-16 { @apply space-y-16; }
+  /* 4-point grid system utilities with improved mobile spacing */
+  .spacing-4 { @apply space-y-2 sm:space-y-4; }
+  .spacing-8 { @apply space-y-4 sm:space-y-8; }
+  .spacing-12 { @apply space-y-6 sm:space-y-12; }
+  .spacing-16 { @apply space-y-8 sm:space-y-16; }
   
-  .gap-4-grid { @apply gap-4; }
-  .gap-8-grid { @apply gap-8; }
-  .gap-12-grid { @apply gap-12; }
-  .gap-16-grid { @apply gap-16; }
+  .gap-4-grid { @apply gap-2 sm:gap-4; }
+  .gap-8-grid { @apply gap-4 sm:gap-8; }
+  .gap-12-grid { @apply gap-6 sm:gap-12; }
+  .gap-16-grid { @apply gap-8 sm:gap-16; }
   
-  .p-4-grid { @apply p-4; }
-  .p-8-grid { @apply p-8; }
-  .p-12-grid { @apply p-12; }
-  .p-16-grid { @apply p-16; }
+  .p-4-grid { @apply p-2 sm:p-4; }
+  .p-8-grid { @apply p-4 sm:p-8; }
+  .p-12-grid { @apply p-6 sm:p-12; }
+  .p-16-grid { @apply p-8 sm:p-16; }
+
+  /* Mobile-first responsive margins and paddings */
+  .m-grid { @apply m-2 sm:m-4 lg:m-8; }
+  .mx-grid { @apply mx-2 sm:mx-4 lg:mx-8; }
+  .my-grid { @apply my-2 sm:my-4 lg:my-8; }
+  .mt-grid { @apply mt-2 sm:mt-4 lg:mt-8; }
+  .mb-grid { @apply mb-2 sm:mb-4 lg:mb-8; }
+  
+  .px-grid { @apply px-2 sm:px-4 lg:px-8; }
+  .py-grid { @apply py-2 sm:py-4 lg:py-8; }
+  .pt-grid { @apply pt-2 sm:pt-4 lg:pt-8; }
+  .pb-grid { @apply pb-2 sm:pb-4 lg:pb-8; }
 }
+

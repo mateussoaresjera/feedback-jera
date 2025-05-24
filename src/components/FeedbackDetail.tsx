@@ -22,16 +22,27 @@ const categoryColors: Record<string, string> = {
 };
 
 const feedbackTypeLabels: Record<string, string> = {
-  positive: 'Positive Recognition',
-  constructive: 'Constructive Feedback',
-  appreciation: 'Appreciation',
-  suggestion: 'Suggestion'
+  positive: 'Reconhecimento Positivo',
+  constructive: 'Feedback Construtivo',
+  appreciation: 'Apreciação',
+  suggestion: 'Sugestão'
+};
+
+const categoryLabels: Record<string, string> = {
+  teamwork: 'Trabalho em Equipe',
+  communication: 'Comunicação',
+  innovation: 'Inovação',
+  leadership: 'Liderança',
+  'problem-solving': 'Resolução de Problemas',
+  mentorship: 'Mentoria',
+  creativity: 'Criatividade',
+  reliability: 'Confiabilidade'
 };
 
 export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('pt-BR', { 
       weekday: 'long',
       year: 'numeric',
       month: 'long', 
@@ -44,7 +55,7 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
   const isGiven = feedback.type === 'given';
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-50">
       <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-card">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <div className="flex items-center gap-3">
@@ -55,7 +66,7 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
             )}
             <div>
               <CardTitle className="font-montserrat">
-                {isGiven ? 'Feedback Given' : 'Feedback Received'}
+                {isGiven ? 'Feedback Dado' : 'Feedback Recebido'}
               </CardTitle>
               <p className="text-sm text-muted-foreground font-nunito">
                 {feedbackTypeLabels[feedback.feedbackType]}
@@ -76,23 +87,23 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
           {/* Participant Info */}
           <div className="space-y-2">
             <h3 className="font-montserrat font-medium text-sm text-muted-foreground">
-              {isGiven ? 'Recipient' : 'Sender'}
+              {isGiven ? 'Destinatário' : 'Remetente'}
             </h3>
             <p className="font-nunito">
-              {isGiven ? feedback.recipient : (feedback.sender || 'Anonymous')}
+              {isGiven ? feedback.recipient : (feedback.sender || 'Anônimo')}
             </p>
           </div>
 
           {/* Date */}
           <div className="space-y-2">
-            <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Date</h3>
+            <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Data</h3>
             <p className="font-nunito text-sm">{formatDate(feedback.date)}</p>
           </div>
 
           {/* Categories */}
           {feedback.categories.length > 0 && (
             <div className="space-y-2">
-              <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Categories</h3>
+              <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Categorias</h3>
               <div className="flex flex-wrap gap-2">
                 {feedback.categories.map((category) => (
                   <Badge 
@@ -100,7 +111,7 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
                     variant="secondary"
                     className={`text-xs ${categoryColors[category] || 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'}`}
                   >
-                    {category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
+                    {categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
                   </Badge>
                 ))}
               </div>
@@ -109,7 +120,7 @@ export const FeedbackDetail = ({ feedback, onClose }: FeedbackDetailProps) => {
 
           {/* Message */}
           <div className="space-y-2">
-            <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Message</h3>
+            <h3 className="font-montserrat font-medium text-sm text-muted-foreground">Mensagem</h3>
             <div className="bg-muted/50 rounded-lg p-4">
               <p className="font-nunito text-sm leading-relaxed whitespace-pre-wrap">
                 {feedback.message}

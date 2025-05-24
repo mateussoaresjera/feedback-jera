@@ -30,16 +30,27 @@ const categoryColors: Record<string, string> = {
 };
 
 const feedbackTypeLabels: Record<string, string> = {
-  positive: 'Positive Recognition',
-  constructive: 'Constructive Feedback',
-  appreciation: 'Appreciation',
-  suggestion: 'Suggestion'
+  positive: 'Reconhecimento Positivo',
+  constructive: 'Feedback Construtivo',
+  appreciation: 'Apreciação',
+  suggestion: 'Sugestão'
+};
+
+const categoryLabels: Record<string, string> = {
+  teamwork: 'Trabalho em Equipe',
+  communication: 'Comunicação',
+  innovation: 'Inovação',
+  leadership: 'Liderança',
+  'problem-solving': 'Resolução de Problemas',
+  mentorship: 'Mentoria',
+  creativity: 'Criatividade',
+  reliability: 'Confiabilidade'
 };
 
 export const FeedbackCard = ({ feedback, onClick }: FeedbackCardProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('pt-BR', { 
       month: 'short', 
       day: 'numeric',
       hour: '2-digit',
@@ -61,7 +72,7 @@ export const FeedbackCard = ({ feedback, onClick }: FeedbackCardProps) => {
         }
       }}
     >
-      <CardContent className="p-4">
+      <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             {isGiven ? (
@@ -71,7 +82,7 @@ export const FeedbackCard = ({ feedback, onClick }: FeedbackCardProps) => {
             )}
             <div>
               <div className="font-medium text-sm font-nunito">
-                {isGiven ? `To: ${feedback.recipient}` : `From: ${feedback.sender || 'Anonymous'}`}
+                {isGiven ? `Para: ${feedback.recipient}` : `De: ${feedback.sender || 'Anônimo'}`}
               </div>
               <div className="text-xs text-muted-foreground font-nunito">
                 {feedbackTypeLabels[feedback.feedbackType]} • {formatDate(feedback.date)}
@@ -90,7 +101,7 @@ export const FeedbackCard = ({ feedback, onClick }: FeedbackCardProps) => {
                 variant="secondary"
                 className={`text-xs rounded-md ${categoryColors[category] || 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'}`}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
+                {categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
               </Badge>
             ))}
           </div>
